@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "android.hardware.power@1.2-service.xiaomi_msm8998-libperfmgr"
+#define LOG_TAG "android.hardware.power@1.3-service.xiaomi_msm8998-libperfmgr"
 
 #include <android-base/file.h>
 #include <android-base/logging.h>
@@ -34,7 +34,7 @@ extern struct stat_pair rpm_stat_map[];
 namespace android {
 namespace hardware {
 namespace power {
-namespace V1_2 {
+namespace V1_3 {
 namespace implementation {
 
 using ::android::hardware::power::V1_0::Feature;
@@ -58,6 +58,12 @@ Power::Power() :
                             mHintManager = HintManager::GetFromJSON("/vendor/etc/powerhint.json");
                             mInteractionHandler = std::make_unique<InteractionHandler>(mHintManager);
                             mInteractionHandler->Init();
+
+                            state = android::base::GetProperty(kPowerHalRenderingProp, "");
+                            if (state == "EXPENSIVE_RENDERING") {
+                                ALOGI("Initialize with EXPENSIVE_RENDERING on");
+                                mHintManager->DoHint("EXPENSIVE_RENDERING");
+                            }
                             // Now start to take powerhint
                             mReady.store(true);
                         });
@@ -304,8 +310,41 @@ Return<void> Power::powerHintAsync_1_2(PowerHint_1_2 hint, int32_t data) {
     return Void();
 }
 
+// Methods from ::android::hardware::power::V1_3::IPower follow.
+Return<void> Power::powerHintAsync_1_3(PowerHint_1_3 hint, int32_t data) {
+    if (!isSupportedGovernor() || !mReady) {
+        return Void();
+    }
+
+    if (hint == PowerHint_1_3::EXPENSIVE_RENDERING) {
+        if (mVRModeOn || mSustainedPerfModeOn) {
+            ALOGV("%s: ignoring due to other active perf hints", __func__);
+            return Void();
+        }
+
+        if (data > 0) {
+            ATRACE_INT("EXPENSIVE_RENDERING", 1);
+            mHintManager->DoHint("EXPENSIVE_RENDERING");
+            if (!android::base::SetProperty(kPowerHalRenderingProp, "EXPENSIVE_RENDERING")) {
+                ALOGE("%s: could not set powerHAL rendering property to EXPENSIVE_RENDERING",
+                      __func__);
+            }
+        } else {
+            ATRACE_INT("EXPENSIVE_RENDERING", 0);
+            mHintManager->EndHint("EXPENSIVE_RENDERING");
+            if (!android::base::SetProperty(kPowerHalRenderingProp, "")) {
+                ALOGE("%s: could not clear powerHAL rendering property", __func__);
+            }
+        }
+    } else {
+        return powerHintAsync_1_2(static_cast<PowerHint_1_2>(hint), data);
+    }
+
+    return Void();
+}
+
 }  // namespace implementation
-}  // namespace V1_2
+}  // namespace V1_3
 }  // namespace power
 }  // namespace hardware
 }  // namespace android

@@ -1,0 +1,11 @@
+service vendor.power-hal-1-3 /vendor/bin/hw/android.hardware.power@1.3-service.xiaomi_msm8998-libperfmgr
+    class hal
+    user system
+    group system
+
+# restart powerHAL when SurfaceFlinger died
+on property:init.svc.surfaceflinger=restarting && property:vendor.powerhal.rendering=EXPENSIVE_RENDERING
+   setprop vendor.powerhal.state ""
+   setprop vendor.powerhal.audio ""
+   setprop vendor.powerhal.rendering ""
+   restart vendor.power-hal-1-3
