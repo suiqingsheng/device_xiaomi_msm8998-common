@@ -221,6 +221,7 @@ service vendor.rmt_storage /vendor/bin/rmt_storage
 service vendor.tftp_server /vendor/bin/tftp_server
     class core
     user root
+    group root system
 
 service vendor.atfwd /vendor/bin/ATFWD-daemon
     class late_start
