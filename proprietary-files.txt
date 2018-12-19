@@ -476,13 +476,16 @@ etc/permissions/qcrilhook.xml|9fc58a3d54d20ac1d53bab14608815121aefbce5
 framework/qcrilhook.jar|bba211e692dbb7b35ee038f784570a3f0dd3bcab
 framework/qti-telephony-common.jar|5fbe86c0bc48468f534bfa22dbf318ba9ae494cb
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk|d1d3adfe6eff32a3013e146317324029181e3c4a
+vendor/bin/tftp_server|55034bc977f8803c5a50132be8e39c9e72548727
+vendor/lib64/libqsocket.so|d6989e3178dfefac2e40c1dbf22c1dd0809bb352
+vendor/lib64/libqrtr.so|2523b0066f041c4d0efc19313df82fce510a2295
+
 
 # RIL
 vendor/bin/ATFWD-daemon
 vendor/bin/netmgrd
 vendor/bin/qti
 vendor/bin/rmt_storage
-vendor/bin/tftp_server
 vendor/etc/data/dsi_config.xml
 vendor/etc/data/netmgr_config.xml
 vendor/lib/libmdmdetect.so
