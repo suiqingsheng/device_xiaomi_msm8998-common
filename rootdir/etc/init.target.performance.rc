@@ -116,7 +116,7 @@ on charger
     mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
 
     wait /dev/block/bootdevice/by-name/persist
-    mount ext4 /dev/block/bootdevice/by-name/persist /persist nosuid nodev barrier=1
+    mount ext4 /dev/block/bootdevice/by-name/persist /mnt/vendor/persist nosuid nodev barrier=1
 
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
 
