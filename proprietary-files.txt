@@ -247,7 +247,7 @@ vendor/lib64/libtinyxml2_1.so
 
 # DPM
 vendor/bin/dpmQmiMgr
-vendor/lib64/com.qualcomm.qti.dpm.api@1.0_vendor.so
+vendor/lib64/com.qualcomm.qti.dpm.api@1.0.so
 vendor/lib64/libdpmqmihal.so
 
 # DRM and SEE
