@@ -266,6 +266,7 @@ vendor/lib64/libssd.so
 vendor/lib64/hw/gatekeeper.msm8998.so
 
 # GPS
+lib64/vendor.qti.gnss@1.0.so:vendor/lib64/vendor.qti.gnss@1.0.so
 vendor/bin/loc_launcher
 vendor/bin/lowi-server
 vendor/bin/xtra-daemon
@@ -286,7 +287,6 @@ vendor/lib64/liblowi_client.so
 vendor/lib64/libulp2.so
 vendor/lib64/libxtadapter.so
 vendor/lib64/libxtwifi_ulp_adaptor.so
-vendor/lib64/vendor.qti.gnss@1.0_vendor.so
 
 # Graphics
 vendor/lib/egl/eglSubDriverAndroid.so
