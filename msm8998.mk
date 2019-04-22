@@ -140,6 +140,10 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service
 
+# Bluetooth
+PRODUCT_PACKAGES += \
+    libbt-vendor
+
 # Display
 PRODUCT_PACKAGES += \
     gralloc.msm8998 \
