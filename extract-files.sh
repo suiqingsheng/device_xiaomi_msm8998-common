@@ -68,6 +68,19 @@ function blob_fixup() {
     vendor/etc/permissions/qcrilhook.xml)
         sed -i 's|/system/framework/qcrilhook.jar|/vendor/framework/qcrilhook.jar|g' "${2}"
         ;;
+    vendor/lib/libMiCameraHal.so)
+        sed -i 's|system/etc/dualcamera.png|vendor/etc/dualcamera.png|g' "${2}"
+        patchelf --replace-needed "libicuuc.so" "libicuuc-v27.so" "${2}"
+        ;;
+    vendor/lib/hw/camera.msm8998.so)
+        patchelf --replace-needed "libminikin.so" "libminikin-v27.so" "${2}"
+        ;;
+    vendor/lib/libicuuc-v27.so)
+        patchelf --set-soname "libicuuc-v27.so" "${2}"
+        ;;
+    vendor/lib/libminikin-v27.so)
+        patchelf --set-soname "libminikin-v27.so" "${2}"
+        ;;
     vendor/lib/libmmcamera2_sensor_modules.so)
         sed -i "s|/system/etc/camera/|/vendor/etc/camera/|g" "${2}"
         ;;
