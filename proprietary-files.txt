@@ -342,8 +342,9 @@ vendor/firmware/a540_zap.elf
 vendor/firmware/a540_zap.mdt
 
 # IMS
--app/ims/ims.apk
+-priv-app/ims/ims.apk
 -app/uceShimService/uceShimService.apk
+lib64/com.qualcomm.qti.imscmservice@1.0.so
 lib64/libdiag_system.so
 lib64/lib-imscamera.so
 lib64/lib-imsvideocodec.so
@@ -358,7 +359,6 @@ vendor/bin/ims_rtp_daemon
 vendor/bin/imsdatadaemon
 vendor/bin/imsqmidaemon
 vendor/bin/imsrcsd
-vendor/lib64/com.qualcomm.qti.imscmservice@1.0_vendor.so
 vendor/lib64/lib-dplmedia.so
 vendor/lib64/lib-imscmservice.so
 vendor/lib64/lib-imsdpl.so
@@ -371,7 +371,7 @@ vendor/lib64/lib-rtpdaemoninterface.so
 vendor/lib64/lib-rtpsl.so
 vendor/lib64/lib-uceservice.so
 vendor/lib64/vendor.qti.imsrtpservice@1.0-service-Impl.so
-vendor/lib64/vendor.qti.imsrtpservice@1.0_vendor.so
+vendor/lib64/vendor.qti.imsrtpservice@1.0.so
 
 # IPA
 vendor/firmware/ipa_fws.b00
@@ -409,6 +409,8 @@ vendor/lib64/libmlipay.so
 vendor/firmware/libpn553_fw.so:vendor/lib/libpn553_fw.so
 
 # Perf
+lib/vendor.qti.hardware.perf@1.0.so
+lib64/vendor.qti.hardware.perf@1.0.so
 vendor/bin/hw/vendor.qti.hardware.perf@1.0-service
 vendor/etc/init/vendor.qti.hardware.perf@1.0-service.rc
 vendor/etc/perf/perf-profile0.conf
@@ -420,18 +422,14 @@ vendor/etc/perf/perf-profile5.conf
 vendor/etc/perf/perf-profile6.conf
 vendor/etc/perf/perfboostsconfig.xml
 vendor/etc/powerhint.xml
-vendor/lib/libfeedbackhandler.so
 vendor/lib/libperfgluelayer.so
 vendor/lib/libqti-perfd-client.so
 vendor/lib/libqti-perfd.so
 vendor/lib/libqti-util.so
-vendor/lib/vendor.qti.hardware.perf@1.0_vendor.so
-vendor/lib64/libfeedbackhandler.so
 vendor/lib64/libperfgluelayer.so
 vendor/lib64/libqti-perfd-client.so
 vendor/lib64/libqti-perfd.so
 vendor/lib64/libqti-util.so
-vendor/lib64/vendor.qti.hardware.perf@1.0_vendor.so
 
 # Peripheral manager
 vendor/bin/pm-proxy
